@@ -5,7 +5,7 @@ require dirname(__FILE__) . "/../../init.php";
 
 // nacteme mesicni teploty
 $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT den as mesic, AVG(prumer_vlhkost) as prumer, MIN(nejnizsi_vlhkost) as nejnizsi, MAX(nejvyssi_vlhkost) as nejvyssi
-                                        FROM tme_denni 
+                                        FROM ".$dbTableprefix."tme_denni 
                                         WHERE nejnizsi_vlhkost > 0 
                                         GROUP BY year(den), month(den) 
                                         ORDER BY den DESC

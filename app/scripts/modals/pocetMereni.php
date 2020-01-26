@@ -19,7 +19,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, mereni
-                      FROM tme_denni 
+                      FROM ".$dbTableprefix."tme_denni 
                       WHERE mereni IS NOT null
                       ORDER BY mereni ASC 
                       LIMIT 50");
@@ -51,7 +51,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, mereni
-                      FROM tme_denni 
+                      FROM ".$dbTableprefix."tme_denni 
                       WHERE mereni IS NOT null
                       ORDER BY mereni DESC 
                       LIMIT 50");

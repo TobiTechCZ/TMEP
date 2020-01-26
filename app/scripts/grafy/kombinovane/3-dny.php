@@ -12,7 +12,7 @@ $do = date("Y-m-d H:m:s");
 
 // Posledni zaznamy vcera
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost
-                                    FROM tme
+                                    FROM ".$dbTableprefix."tme
                                     WHERE kdy >= CAST('{$od}' AS datetime)
                                       AND kdy <= CAST('{$do}' AS datetime)
                                     ORDER BY kdy DESC");

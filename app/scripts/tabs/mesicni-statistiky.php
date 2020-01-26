@@ -8,7 +8,7 @@ require_once dirname(__FILE__) . "/../variableCheck.php";
 
 // nacteme
 $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(prumer) as prumer
-                                        FROM tme_denni
+                                        FROM ".$dbTableprefix."tme_denni
                                         GROUP BY year(den),month(den)
                                         ORDER BY prumer DESC
                                         LIMIT 10");
@@ -72,7 +72,7 @@ if(MySQLi_num_rows($qStat) > 2)
 
     // nacteme
     $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(prumer) as prumer
-                                            FROM tme_denni
+                                            FROM ".$dbTableprefix."tme_denni
                                             GROUP BY year(den),month(den)
                                             ORDER BY prumer ASC
                                             LIMIT 10");
@@ -91,7 +91,7 @@ if(MySQLi_num_rows($qStat) > 2)
     if($vlhkomer == 1)
     {
         $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(prumer_vlhkost) as prumer
-                                                FROM tme_denni
+                                                FROM ".$dbTableprefix."tme_denni
                                                 WHERE prumer_vlhkost > 0
                                                 GROUP BY year(den),month(den)
                                                 ORDER BY prumer DESC
@@ -132,7 +132,7 @@ if(MySQLi_num_rows($qStat) > 2)
 
         // nacteme
         $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(prumer_vlhkost) as prumer
-                                                FROM tme_denni
+                                                FROM ".$dbTableprefix."tme_denni
                                                 WHERE prumer_vlhkost > 0
                                                 GROUP BY year(den),month(den)
                                                 ORDER BY prumer ASC
@@ -164,7 +164,7 @@ if(MySQLi_num_rows($qStat) > 2)
         // nacteme nejvice mereni
         ///////////////////////////
         $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(mereni) as mereni
-                                                FROM tme_denni
+                                                FROM ".$dbTableprefix."tme_denni
                                                 GROUP BY year(den),month(den)
                                                 ORDER BY mereni DESC
                                                 LIMIT 10");
@@ -193,7 +193,7 @@ if(MySQLi_num_rows($qStat) > 2)
         // nacteme nejmene mereni
         ///////////////////////////
         $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, AVG(mereni) as mereni
-                                                FROM tme_denni
+                                                FROM ".$dbTableprefix."tme_denni
                                                 GROUP BY year(den),month(den)
                                                 ORDER BY mereni ASC
                                                 LIMIT 10");
@@ -265,7 +265,7 @@ if(MySQLi_num_rows($qStat) > 2)
                                                  MIN(21nejnizsi_vlhkost), MAX(21nejvyssi_vlhkost), AVG(21prumer_vlhkost),
                                                  MIN(22nejnizsi_vlhkost), MAX(22nejvyssi_vlhkost), AVG(22prumer_vlhkost),
                                                  MIN(23nejnizsi_vlhkost), MAX(23nejvyssi_vlhkost), AVG(23prumer_vlhkost)
-                                            FROM tme_denni 
+                                            FROM ".$dbTableprefix."tme_denni 
                                             GROUP BY year(den),month(den)
                                             ORDER BY den DESC
                                             LIMIT 3");

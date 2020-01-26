@@ -3,21 +3,21 @@
 // Data pro mereni z dneska
 // Dnes nejnizsi namerena teplota/vlhkost
 $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT MIN(teplota) as teplota, MIN(vlhkost) as vlhkost
-                                        FROM tme
+                                        FROM ".$dbTableprefix."tme
                                         WHERE kdy >= CAST('" . date("Y-m-d") . " 00:00:00' AS datetime)
                                               AND kdy <= CAST('" . date("Y-m-d") . " 23:59:59' AS datetime)");
 $nejnizsiDnes = MySQLi_fetch_assoc($dotaz);
 
 // Dnes prumerna teplota/vlhkost
 $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT AVG(teplota) as teplota, AVG(vlhkost) as vlhkost
-                                        FROM tme
+                                        FROM ".$dbTableprefix."tme
                                         WHERE kdy >= CAST('" . date("Y-m-d") . " 00:00:00' AS datetime)
                                               AND kdy <= CAST('" . date("Y-m-d") . " 23:59:59' AS datetime)");
 $prumernaDnes = MySQLi_fetch_assoc($dotaz);
 
 // Dnes nejvyssi namerena teplota/vlhkost
 $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT MAX(teplota) as teplota, MAX(vlhkost) as vlhkost
-                                        FROM tme
+                                        FROM ".$dbTableprefix."tme
                                         WHERE kdy >= CAST('" . date("Y-m-d") . " 00:00:00' AS datetime)
                                               AND kdy <= CAST('" . date("Y-m-d") . " 23:59:59' AS datetime)");
 $nejvyssiDnes = MySQLi_fetch_assoc($dotaz);

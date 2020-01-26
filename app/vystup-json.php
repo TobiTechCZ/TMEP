@@ -21,7 +21,7 @@ header("Access-Control-Allow-Origin: *");
 ////////////////////////////////////////////////////////////////////////
 
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT teplota, vlhkost, kdy
-                                      FROM tme
+                                      FROM ".$dbTableprefix."tme
                                       ORDER BY id DESC
                                       LIMIT 1");
 

@@ -86,7 +86,7 @@ if(isset($_GET['odeslani']) && $_GET['typ'] == 0)
                                                MIN(21nejnizsi_vlhkost), MAX(21nejvyssi_vlhkost), AVG(21prumer_vlhkost),
                                                MIN(22nejnizsi_vlhkost), MAX(22nejvyssi_vlhkost), AVG(22prumer_vlhkost),
                                                MIN(23nejnizsi_vlhkost), MAX(23nejvyssi_vlhkost), AVG(23prumer_vlhkost)
-                                        FROM tme_denni
+                                        FROM ".$dbTableprefix."tme_denni
                                         WHERE den = '{$_GET['jenden']}'
                                         GROUP BY den;");
 
@@ -167,7 +167,7 @@ if(isset($_GET['odeslani']) && $_GET['typ'] == 0)
 
         $qL = MySQLi_query($GLOBALS["DBC"], "SELECT den, mereni, MIN(nejnizsi), MAX(nejvyssi), AVG(prumer),
                                                     MIN(nejnizsi_vlhkost), MAX(nejvyssi_vlhkost), AVG(prumer_vlhkost)
-                                             FROM tme_denni
+                                             FROM ".$dbTableprefix."tme_denni
                                              WHERE den LIKE '%-" . substr($_GET['jenden'], 5, 6) . "'
                                              GROUP BY den;");
 

@@ -24,7 +24,7 @@ echo "<h3>{$lang['teplotyzaposlednidny']} ({$jednotka})</h3>";
 
 // nacteme teploty do tabulky pro poslednich dny
 $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, mereni, nejnizsi, nejvyssi, prumer
-                    FROM tme_denni 
+                    FROM ".$dbTableprefix."tme_denni 
                     ORDER BY den DESC 
                     LIMIT 250");
 

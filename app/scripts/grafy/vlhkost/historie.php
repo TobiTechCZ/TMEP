@@ -6,7 +6,7 @@ require dirname(__FILE__) . "/../../init.php";
 for($a = 0; $a < 24; $a++)
 {
     $q = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, vlhkost
-                                        FROM tme 
+                                        FROM ".$dbTableprefix."tme 
                                         WHERE kdy >= CAST('{$_GET['jenden']} " . (strlen($a) == 1 ? "0" . $a : $a) . ":00:00' AS datetime) 
                                           AND kdy <= CAST('{$_GET['jenden']} " . (strlen($a) == 1 ? "0" . $a : $a) . ":59:59' AS datetime) 
                                         ORDER BY kdy ASC 

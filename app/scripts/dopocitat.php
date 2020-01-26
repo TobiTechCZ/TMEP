@@ -20,20 +20,21 @@ if(!isset($dopocitat))
 $vcera = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") - 1, date("Y")));
 
 // Nejdriv najdeme posledni dopocitany den krome dnesniho
-$q = MySQLi_query($GLOBALS["DBC"], "SELECT MAX(den) AS den FROM tme_denni");
+$q = MySQLi_query($GLOBALS["DBC"], "SELECT MAX(den) AS den FROM ".$dbTableprefix."tme_denni");
 $h = MySQLi_fetch_assoc($q);
 
 // je potreba neco dopocitavat?
 if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
 {
     // takova hloupost...cheme dalsi den :)
+    $h['den2'] = ""; //vychozi hodnota
     if($h['den'] != "")
     {
         $h['den2'] = $h['den'] . " 23:59:59";
     }
 
     $q = MySQLi_query($GLOBALS["DBC"], "SELECT kdy
-                                        FROM tme 
+                                        FROM ".$dbTableprefix."tme 
                                         WHERE kdy > '{$h['den2']}' AND kdy < '" . date("Y-m-d") . "' 
                                         GROUP BY year(kdy),month(kdy),day(kdy) 
                                         ORDER BY kdy ASC");
@@ -50,9 +51,9 @@ if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
             // nejdrive naplnime tabulku cache, kde budou radky jen pro dopocitavany den
             // a tu potrapime radou dotazu misto toho, abysme ty dotazy vykonavali nad
             // tabulkou se vsemi merenimi, ktera mohou jit do milionu zaznamu
-            MySQLi_query($GLOBALS["DBC"], "INSERT INTO tme_cache(id, kdy, teplota, vlhkost)
+            MySQLi_query($GLOBALS["DBC"], "INSERT INTO ".$dbTableprefix."tme_cache(id, kdy, teplota, vlhkost)
                                            SELECT id, kdy, teplota, vlhkost
-                                           FROM tme
+                                           FROM ".$dbTableprefix."tme
                                            WHERE kdy >= CAST('{$den} 00:00:00' AS datetime)
                                              AND kdy <= CAST('{$den} 23:59:59' AS datetime)");
 
@@ -60,7 +61,7 @@ if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
             $qV = MySQLi_query($GLOBALS["DBC"], "SELECT COUNT(id) AS pocet,
                                                         MIN(teplota) AS minteplota, MAX(teplota) AS maxteplota, AVG(teplota) AS avgteplota,
                                                         MIN(vlhkost) AS minvlh, MAX(vlhkost) AS maxvlh, AVG(vlhkost) AS avgvlh
-                                                 FROM tme_cache
+                                                 FROM ".$dbTableprefix."tme_cache
                                                  WHERE kdy >= CAST('{$den} 00:00:00' AS datetime)
                                                    AND kdy <= CAST('{$den} 23:59:59' AS datetime)");
 
@@ -113,7 +114,7 @@ if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
                 $qV = MySQLi_query($GLOBALS["DBC"], "SELECT COUNT(id) AS pocet,
                                                             MIN(teplota) AS minteplota, MAX(teplota) AS maxteplota, AVG(teplota) AS avgteplota,
                                                             MIN(vlhkost) AS minvlh, MAX(vlhkost) AS maxvlh, AVG(vlhkost) AS avgvlh
-                                                     FROM tme_cache
+                                                     FROM ".$dbTableprefix."tme_cache
                                                      WHERE kdy >= CAST('{$den} {$c}:00:00' AS datetime)
                                                        AND kdy <= CAST('{$den} {$c}:59:59' AS datetime)");
 
@@ -157,7 +158,7 @@ if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
 
             }
 
-            MySQLi_query($GLOBALS["DBC"], "INSERT INTO tme_denni (den, mereni, nejnizsi, nejvyssi, prumer, nejnizsi_vlhkost, nejvyssi_vlhkost, prumer_vlhkost,
+            MySQLi_query($GLOBALS["DBC"], "INSERT INTO ".$dbTableprefix."tme_denni (den, mereni, nejnizsi, nejvyssi, prumer, nejnizsi_vlhkost, nejvyssi_vlhkost, prumer_vlhkost,
                                                        0mereni, 0nejnizsi, 0nejvyssi, 0prumer, 0nejnizsi_vlhkost, 0nejvyssi_vlhkost, 0prumer_vlhkost, 
                                                        1mereni, 1nejnizsi, 1nejvyssi, 1prumer, 1nejnizsi_vlhkost, 1nejvyssi_vlhkost, 1prumer_vlhkost,
                                                        2mereni, 2nejnizsi, 2nejvyssi, 2prumer, 2nejnizsi_vlhkost, 2nejvyssi_vlhkost, 2prumer_vlhkost,
@@ -211,7 +212,7 @@ if(MySQLi_num_rows($q) == 0 OR $h['den'] != $vcera)
             echo mysqli_error($GLOBALS["DBC"]);
 
             // smazeme docasne zaznamy
-            MySQLi_query($GLOBALS["DBC"], "TRUNCATE tme_cache;");
+            MySQLi_query($GLOBALS["DBC"], "TRUNCATE ".$dbTableprefix."tme_cache;");
 
             // mame stale pripojeni na MySQL server?
             if(!mysqli_ping($GLOBALS["DBC"]))

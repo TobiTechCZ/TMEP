@@ -13,7 +13,7 @@ require_once "scripts/fce.php";       // skript s nekolika funkcemi
 ////////////////////////////////////////////////////////////////////////
 
 // Posledni mereni
-$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM tme ORDER BY kdy DESC LIMIT 1");
+$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM ".$dbTableprefix."tme ORDER BY kdy DESC LIMIT 1");
 $posledni = MySQLi_fetch_assoc($dotaz);
 
 $d = explode(" ", formatData($posledni['kdy']));

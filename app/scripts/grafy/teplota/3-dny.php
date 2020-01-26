@@ -14,7 +14,7 @@ $tep = 0;
 
 // Posledni zaznamy
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota
-                                    FROM tme
+                                    FROM ".$dbTableprefix."tme
                                     WHERE kdy >= CAST('{$od}' AS datetime)
                                       AND kdy <= CAST('{$do}' AS datetime)
                                     ORDER BY kdy DESC");

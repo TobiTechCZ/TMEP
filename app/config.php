@@ -16,6 +16,8 @@ $dbHeslo = "";    // CZ: heslo pro prihlaseni do databaze
 $dbDb = "";       // CZ: nazev databaze
                   // EN: database name
 
+$dbTableprefix = "garaz_"; //CZ: prefix nazvu tabulek
+
 $GUID = "temp"; // CZ: nazev retezce, pod kterym teplomer odesila aktualni teplotu
                 // naprosto stejny retezec je nutno nastavit v nastaveni HTTP GET
                 // v utilite pro nastaveni teplomeru od Papoucha

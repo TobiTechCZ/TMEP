@@ -21,7 +21,7 @@ echo "<h3>{$lang['vlhkostzaposlednidny']} (%)</h3>";
 
 // nacteme teploty do tabulky pro poslednich dny
 $qStat = MySQLi_query($GLOBALS["DBC"], "SELECT den, mereni, nejnizsi_vlhkost, nejvyssi_vlhkost, prumer_vlhkost
-                                        FROM tme_denni 
+                                        FROM ".$dbTableprefix."tme_denni 
                                         WHERE nejnizsi_vlhkost > 0
                                         ORDER BY den DESC 
                                         LIMIT 250");

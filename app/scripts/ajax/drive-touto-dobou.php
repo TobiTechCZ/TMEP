@@ -33,7 +33,7 @@ for($a = 1; $a < 6; $a++)
 for($a = 0; $a < count($dny2); $a++)
 {
     $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost
-                            FROM tme 
+                            FROM ".$dbTableprefix."tme 
                             WHERE kdy >= CAST('" . substr($dny2[$a], 0, 15) . "0' AS datetime)
                                   AND kdy <= CAST('" . substr($dny2[$a], 0, 15) . "9' AS datetime)
                             LIMIT 1");

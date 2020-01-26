@@ -5,7 +5,7 @@ require dirname(__FILE__) . "/../../init.php";
 
 // Posledni zaznamy
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost 
-                                    FROM tme 
+                                    FROM ".$dbTableprefix."tme 
                                     WHERE kdy >= NOW() - INTERVAL 1 DAY  
                                     ORDER BY kdy DESC;");
 

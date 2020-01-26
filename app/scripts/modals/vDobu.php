@@ -37,7 +37,7 @@ echo "<center>
 // nejnizsi
 ///////////////////////////
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, {$_GET['doba']}nejnizsi
-                      FROM tme_denni 
+                      FROM ".$dbTableprefix."tme_denni 
                       WHERE {$_GET['doba']}nejnizsi IS NOT NULL
                       ORDER BY {$_GET['doba']}nejnizsi ASC 
                       LIMIT 25");
@@ -58,7 +58,7 @@ while($r = MySQLi_fetch_assoc($q))
 // nejvyssi
 ///////////////////////////
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, {$_GET['doba']}nejvyssi
-                      FROM tme_denni 
+                      FROM ".$dbTableprefix."tme_denni 
                       ORDER BY {$_GET['doba']}nejvyssi DESC 
                       LIMIT 25");
 
@@ -89,7 +89,7 @@ if($vlhkomer == 1)
     // nejnizsi
     ///////////////////////////
     $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, {$_GET['doba']}nejnizsi_vlhkost
-                        FROM tme_denni 
+                        FROM ".$dbTableprefix."tme_denni 
                         WHERE {$_GET['doba']}nejnizsi_vlhkost > 0 
                         ORDER BY {$_GET['doba']}nejnizsi_vlhkost ASC 
                         LIMIT 25");
@@ -109,7 +109,7 @@ if($vlhkomer == 1)
     // nejvyssi
     ///////////////////////////
     $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, {$_GET['doba']}nejvyssi_vlhkost
-                        FROM tme_denni 
+                        FROM ".$dbTableprefix."tme_denni 
                         ORDER BY {$_GET['doba']}nejvyssi_vlhkost DESC 
                         LIMIT 25");
 

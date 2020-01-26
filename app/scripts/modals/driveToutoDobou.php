@@ -59,7 +59,7 @@ for($a = 0; $a < count($dny2); $a++)
     $dnyGraf[] = formatDnu($dny2[$a]);
     // Zjistime hodnoty pro dane desetiminuti
     $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost
-                                            FROM tme 
+                                            FROM ".$dbTableprefix."tme 
                                             WHERE kdy >= CAST('" . substr($dny2[$a], 0, 15) . "0' AS datetime)
                                               AND kdy <= CAST('" . substr($dny2[$a], 0, 15) . "9' AS datetime)
                                             LIMIT 1");
@@ -76,6 +76,7 @@ for($a = 0; $a < count($dny2); $a++)
         $teplotaGraf[] = jednotkaTeploty($hod['teplota'], $u, 0);
     }
     // Vlhkost neni prazdna nebo nula
+    if (isset($hod['vlhkost']))
     if($hod['vlhkost'] == "" OR $hod['vlhkost'] == 0 OR $hod['vlhkost'] == null)
     {
         $hod['vlhkost'] = "-";

@@ -5,7 +5,7 @@ require dirname(__FILE__) . "/../../init.php";
 
 // maximalni teplota dany den
 $qj = MySQLi_query($GLOBALS["DBC"], "SELECT den, nejvyssi_vlhkost, nejnizsi_vlhkost, prumer_vlhkost 
-                                     FROM tme_denni 
+                                     FROM ".$dbTableprefix."tme_denni 
                                      ORDER BY den DESC LIMIT 0, 31");
 
 while($hod = MySQLi_fetch_assoc($qj))

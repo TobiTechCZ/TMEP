@@ -14,10 +14,10 @@ require_once dirname(__FILE__) . "/../variableCheck.php";
 // Vycteni hodnot
 
 // Posledni mereni
-$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM tme ORDER BY kdy DESC LIMIT 1");
+$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM ".$dbTableprefix."tme ORDER BY kdy DESC LIMIT 1");
 $posledni = MySQLi_fetch_assoc($dotaz);
 // Starsi mereni
-$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM tme ORDER BY kdy DESC LIMIT 5, 1");
+$dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy, teplota, vlhkost FROM ".$dbTableprefix."tme ORDER BY kdy DESC LIMIT 5, 1");
 $starsi = MySQLi_fetch_assoc($dotaz);
 
 // vyvoj teploty

@@ -21,7 +21,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, nejnizsi as teplota
-                                    FROM tme_denni 
+                                    FROM ".$dbTableprefix."tme_denni 
                                     WHERE nejnizsi IS NOT null
                                     ORDER BY nejnizsi ASC 
                                     LIMIT 15");
@@ -31,7 +31,7 @@ while($r = MySQLi_fetch_assoc($q))
 
     // Zjistime presny cas
     $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy
-                                            FROM tme 
+                                            FROM ".$dbTableprefix."tme 
                                             WHERE (kdy >= CAST('{$r['den']} 00:00:00' AS datetime) AND kdy <= CAST('{$r['den']} 23:59:59' AS datetime)) AND 
                                                   teplota LIKE {$r['teplota']} LIMIT 1");
 
@@ -61,7 +61,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, prumer as teplota
-                                    FROM tme_denni 
+                                    FROM ".$dbTableprefix."tme_denni 
                                     WHERE prumer IS NOT null
                                     ORDER BY prumer ASC 
                                     LIMIT 15");
@@ -95,7 +95,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, nejvyssi as teplota
-                                    FROM tme_denni 
+                                    FROM ".$dbTableprefix."tme_denni 
                                     WHERE nejvyssi IS NOT null 
                                     ORDER BY nejvyssi DESC 
                                     LIMIT 15");
@@ -103,7 +103,7 @@ while($r = MySQLi_fetch_assoc($q))
 {
     // Zjistime presny cas
     $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT kdy
-                                            FROM tme 
+                                            FROM ".$dbTableprefix."tme 
                                             WHERE (kdy >= CAST('{$r['den']} 00:00:00' AS datetime) AND kdy <= CAST('{$r['den']} 23:59:59' AS datetime)) AND 
                                                   teplota LIKE {$r['teplota']} LIMIT 1");
     // Nacteme do promenne
@@ -130,7 +130,7 @@ $tabulka .= "</tr>";
 
 // Nacteme dny a teploty
 $q = MySQLi_query($GLOBALS["DBC"], "SELECT den, prumer as teplota
-                                    FROM tme_denni 
+                                    FROM ".$dbTableprefix."tme_denni 
                                     WHERE prumer IS NOT null
                                     ORDER BY prumer DESC 
                                     LIMIT 15");

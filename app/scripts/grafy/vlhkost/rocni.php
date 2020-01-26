@@ -10,7 +10,7 @@ if(isset($ydata))
 
 // nacteme mesicni teploty
 $dotaz = MySQLi_query($GLOBALS["DBC"], "SELECT den, prumer_vlhkost as prumer, nejnizsi_vlhkost as nejnizsi, nejvyssi_vlhkost as nejvyssi
-                                        FROM tme_denni 
+                                        FROM ".$dbTableprefix."tme_denni 
                                         WHERE nejnizsi_vlhkost > 0 AND den LIKE '" . intval($_GET['rok']) . "-%' 
                                         ORDER BY den DESC");
 

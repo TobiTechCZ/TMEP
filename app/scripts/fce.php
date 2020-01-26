@@ -137,8 +137,9 @@ function romer($teplota)
 
 function kolik($co, $kde, $podminky = "")
 {
+	global $dbTableprefix;
     $k = MySQLi_query($GLOBALS["DBC"], "SELECT COUNT($co) AS pocet
-                                        FROM $kde $podminky");
+                                        FROM ".$dbTableprefix.$kde." $podminky");
     $k = MySQLi_fetch_assoc($k);
 
     return $k['pocet'];
@@ -154,8 +155,9 @@ function kolik($co, $kde, $podminky = "")
 
 function kolikRadek($co, $kde, $podminky = "")
 {
+    global $dbTableprefix;
     $k = MySQLi_query($GLOBALS["DBC"], "SELECT $co AS pocet
-                     FROM $kde $podminky");
+                     FROM ".$dbTableprefix.$kde." $podminky");
 
     return MySQLi_num_rows($k);
 }
