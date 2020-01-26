@@ -10,8 +10,8 @@ TMEP use Highcharts JS for graph generation ([highcharts.com](http://www.highcha
 Application demo: [roudnice.eu](http://www.roudnice.eu)
 
 Read tmep-info-en.html or tmep-info-cz.html for more information.
-  * Version 9.0 released at 2020-01-26 (Prefix for database table + minor changes)
-  * **Version 8.3 released at 2018-11-22** (Added spanish translation - thank you [Emilio Cortés Martínez](emicor@me.com), fixed measured humidity detection on Yearly statistics tab, minimum version of PHP is 5.4.0+)
+  * **Version 9.0 released at 2020-01-26** (Prefix for database table + minor changes)
+  * Version 8.3 released at 2018-11-22** (Added spanish translation - thank you [Emilio Cortés Martínez](emicor@me.com), fixed measured humidity detection on Yearly statistics tab, minimum version of PHP is 5.4.0+)
   * Version 8.2.1 released at 2017-05-09 (Minor changes - custom page heading in config, humidity detected separately from temperature, proposed by [mikrom](http://www.mikrom.cz))
   * Version 8.2 released at 2017-02-23 (New Highcharts library, better graphs on Actually tab)
   * Version 8.1.3 released at 2016-12-20 (Fixed XSS vulnerability, thank you [@spazef0rze](https://www.michalspacek.cz)!)
